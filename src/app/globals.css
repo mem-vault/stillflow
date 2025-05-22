@@ -1,12 +1,44 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000918;
+  /* 深蓝黑色背景 */
+  --foreground: #E0E7FF;
+  /* 浅色前景/文字颜色，确保可读性 */
+  --primary-accent: #27ddfb;
+  /* 主强调色 - 亮青色 */
+  --secondary-accent: #29e0f4;
+  /* 次强调色 - 略有不同的亮青色 */
+  --border-color: var(--primary-accent);
+  /* 边框颜色使用主强调色，打造线条感 */
+  --background-secondary: #051024;
+  /* 次要背景色，可用于卡片或分段背景 */
+  --input-background: transparent;
+  /* 输入框背景透明 */
+  --input-border: var(--primary-accent);
+  --button-text: var(--primary-accent);
+  --button-border: var(--primary-accent);
+  --button-hover-bg: rgba(39, 221, 251, 0.1);
+  /* 按钮悬停背景，轻微的强调色 */
+  --button-primary-bg: var(--primary-accent);
+  --button-primary-text: var(--background);
+  --button-primary-hover-bg: var(--secondary-accent);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000918;
+    --foreground: #E0E7FF;
+    --primary-accent: #27ddfb;
+    --secondary-accent: #29e0f4;
+    --border-color: var(--primary-accent);
+    --background-secondary: #051024;
+    --input-background: transparent;
+    --input-border: var(--primary-accent);
+    --button-text: var(--primary-accent);
+    --button-border: var(--primary-accent);
+    --button-hover-bg: rgba(39, 221, 251, 0.1);
+    --button-primary-bg: var(--primary-accent);
+    --button-primary-text: var(--background);
+    --button-primary-hover-bg: var(--secondary-accent);
   }
 }
 
@@ -22,29 +54,64 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  border-color: var(--border-color);
+  /* 默认边框颜色 */
 }
 
 a {
-  color: inherit;
+  color: var(--primary-accent);
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--secondary-accent);
 }
 
 strong {
   padding: 2px 4px;
+  font-weight: bold;
+  color: var(--secondary-accent);
 }
 
 span.copyable {
   cursor: pointer;
+  border-bottom: 1px dashed var(--primary-accent);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--foreground);
+  /* 标题颜色 */
+  margin-bottom: 0.75rem;
+}
+
+/* Minimalist scrollbar (optional) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-accent);
 }

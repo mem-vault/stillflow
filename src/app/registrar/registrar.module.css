@@ -2,116 +2,159 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    /* Changed from center to allow content to flow from top */
     padding: 2rem;
-    background-color: #ffffff;
+    background-color: var(--background);
+    /* Use global background color */
+    min-height: 100vh;
 }
 
 .container {
-    border: 2px solid #1e1e1e;
-    padding: 20px;
-    border-radius: 10px;
-    /* Approximate from SVG */
+    border: 1px solid var(--border-color);
+    /* Thinner border with accent color */
+    padding: 25px;
+    /* Adjusted padding */
+    border-radius: 12px;
+    /* Softer radius */
     width: 100%;
     max-width: 900px;
-    /* Approximate from SVG */
     box-sizing: border-box;
+    background-color: var(--background-secondary);
+    /* Subtle background for container */
+    color: var(--foreground);
+    /* Ensure text inside is readable */
 }
 
 .title {
-    font-size: 1.25rem;
-    /* 20px */
-    color: #1e1e1e;
-    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    /* Slightly larger title */
+    color: var(--primary-accent);
+    /* Title with accent color */
+    margin-bottom: 0.75rem;
+    text-align: center;
+    /* Center the main title */
 }
 
 .welcomeText {
-    font-size: 1.25rem;
-    /* 20px */
-    color: #1e1e1e;
-    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    /* Adjusted size */
+    color: var(--foreground);
+    /* Standard text color */
+    margin-bottom: 2.5rem;
+    /* Increased spacing */
+    text-align: center;
+    /* Center welcome text */
 }
 
 .actionsContainer {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    /* Increased spacing */
+    display: flex;
+    /* Added to center button if needed */
+    justify-content: center;
+    /* Center button */
 }
 
 .actionButton {
-    font-size: 1.25rem;
-    /* 20px */
-    color: #1e1e1e;
+    font-size: 1rem;
+    color: var(--button-text);
     background-color: transparent;
-    border: 2px solid #1e1e1e;
+    border: 1px solid var(--button-border);
     padding: 10px 20px;
     border-radius: 5px;
-    /* Approximate */
     cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
 }
+
+.actionButton:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--secondary-accent);
+}
+
+.actionButton:disabled {
+    border-color: var(--input-border);
+    /* Muted border for disabled state */
+    color: var(--input-border);
+    /* Muted text for disabled state */
+    cursor: not-allowed;
+    background-color: transparent;
+}
+
 
 .locksGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    /* Adjust minmax for responsiveness */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    /* Adjusted minmax for better spacing */
     gap: 20px;
-    align-items: start;
-    /* Align items to the start of the track */
+    align-items: stretch;
+    /* Changed from start to stretch for uniform height if desired */
 }
 
 .lockItemLink {
     text-decoration: none;
-    /* Remove underline from link */
     color: inherit;
-    /* Inherit text color */
-    display: block;
-    /* Make the link a block element */
+    display: flex;
+    /* Make link a flex container for stretching */
 }
 
 .lockItem {
-    border: 2px solid #1e1e1e;
-    padding: 15px;
-    border-radius: 5px;
-    /* Approximate */
+    border: 1px solid var(--border-color);
+    /* Thinner border */
+    padding: 20px;
+    /* Adjusted padding */
+    border-radius: 8px;
+    /* Softer radius */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* Pushes lockCount to the bottom */
-    min-height: 120px;
-    /* Approximate height */
+    background-color: var(--background);
+    /* Slightly different background for items */
+    transition: border-color 0.2s, transform 0.2s;
+    width: 100%;
+    /* Ensure item takes full width of link */
+}
+
+.lockItem:hover {
+    border-color: var(--secondary-accent);
+    /* Highlight border on hover */
+    transform: translateY(-3px);
+    /* Subtle lift effect */
 }
 
 .largeLockItem {
     grid-column: span 2;
-    /* Makes this item span 2 columns */
     grid-row: span 2;
-    /* Makes this item span 2 rows */
-    min-height: 160px;
-    /* Approximate height for larger box */
-    /* You might need to adjust padding or other properties for the larger box */
+    min-height: 200px;
+    /* Adjusted min-height */
+    /* Larger items might need more specific styling for content */
 }
 
 .lockTitle {
-    font-size: 1rem;
-    /* 20px, adjusted for context */
-    color: #1e1e1e;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--primary-accent);
+    /* Title with accent color */
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    /* Bolder title */
 }
 
 .lockDescription {
-    font-size: 0.875rem;
-    /* Smaller for description */
-    color: #1e1e1e;
+    font-size: 0.9rem;
+    color: var(--foreground);
+    /* Standard text color */
     margin-bottom: 1rem;
     flex-grow: 1;
-    /* Allows description to take available space */
+    line-height: 1.5;
 }
 
 .lockCount {
-    font-size: 1rem;
-    /* 20px, adjusted for context */
-    color: #1e1e1e;
+    font-size: 0.9rem;
+    color: var(--secondary-accent);
+    /* Count with secondary accent */
     align-self: flex-start;
-    /* Aligns to the start (left) */
+    margin-top: auto;
+    /* Pushes to bottom if description is short */
 }
 
 /* Modal Styles */
@@ -121,7 +164,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 9, 24, 0.85);
+    /* Darker, more thematic overlay */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -129,78 +173,116 @@
 }
 
 .modalContent {
-    background-color: #fff;
-    padding: 20px;
+    background-color: var(--background-secondary);
+    /* Modal background */
+    padding: 25px 30px;
+    /* Adjusted padding */
     border-radius: 8px;
-    border: 2px solid #1e1e1e;
+    border: 1px solid var(--border-color);
+    /* Thinner border */
     width: 90%;
-    max-width: 400px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    /* Slightly wider modal */
+    box-shadow: 0 5px 20px rgba(39, 221, 251, 0.15);
+    /* Thematic shadow */
+    color: var(--foreground);
+    /* Ensure text is readable */
 }
 
 .modalContent h2 {
     margin-top: 0;
-    margin-bottom: 1rem;
-    color: #1e1e1e;
+    margin-bottom: 1.5rem;
+    /* Increased spacing */
+    color: var(--primary-accent);
+    /* Title with accent color */
+    text-align: center;
+    font-size: 1.5rem;
 }
 
 .formGroup {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    /* Increased spacing */
 }
 
 .formGroup label {
     display: block;
-    margin-bottom: 0.5rem;
-    color: #1e1e1e;
-    font-weight: bold;
+    margin-bottom: 0.6rem;
+    /* Increased spacing */
+    color: var(--foreground);
+    font-weight: 500;
+    /* Slightly bolder labels */
+    font-size: 0.9rem;
 }
 
 .formGroup input[type="text"],
+.formGroup input[type="datetime-local"],
 .formGroup textarea {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
+    padding: 12px;
+    /* Increased padding */
+    border: 1px solid var(--input-border);
+    /* Input border with accent */
     border-radius: 4px;
     box-sizing: border-box;
-    color: #1e1e1e;
-    background-color: #fff;
-}
-
-.formGroup input[type="date"],
-.formGroup input[type="datetime-local"] {
-    width: 100%;
-    padding: 10px;
-    /* 增加内边距 */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    color: #1e1e1e;
-    background-color: #fff;
+    color: var(--foreground);
+    background-color: var(--input-background);
+    /* Transparent background */
     font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.formGroup input[type="text"]:focus,
+.formGroup input[type="datetime-local"]:focus,
+.formGroup textarea:focus {
+    border-color: var(--secondary-accent);
+    /* Highlight border on focus */
+    outline: none;
 }
 
 .formGroup textarea {
-    min-height: 80px;
+    min-height: 100px;
+    /* Adjusted height */
     resize: vertical;
 }
 
 .modalActions {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
-    margin-top: 1.5rem;
+    gap: 15px;
+    /* Increased gap */
+    margin-top: 2rem;
+    /* Increased spacing */
 }
 
 .modalButton {
-    padding: 8px 15px;
+    padding: 10px 20px;
+    /* Adjusted padding */
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
-    color: #1e1e1e;
-    background-color: transparent;
-    border: 2px solid #1e1e1e;
+    font-size: 0.95rem;
+    /* Adjusted font size */
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .modalButton[type="submit"] {
-    /* Optional: style submit button differently */
+    color: var(--button-primary-text);
+    background-color: var(--button-primary-bg);
+    border: 1px solid var(--button-primary-bg);
+}
+
+.modalButton[type="submit"]:hover {
+    background-color: var(--button-primary-hover-bg);
+    border-color: var(--button-primary-hover-bg);
+}
+
+.modalButton[type="button"] {
+    /* Cancel button */
+    color: var(--button-text);
+    background-color: transparent;
+    border: 1px solid var(--button-border);
+}
+
+.modalButton[type="button"]:hover {
+    background-color: var(--button-hover-bg);
 }
