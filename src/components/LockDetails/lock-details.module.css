@@ -1,13 +1,50 @@
 .descriptionBox {
-    border: 2px solid #1e1e1e;
-    padding: 15px;
+    border: 1px solid var(--border-color);
+    /* 使用CSS变量和细线条 */
+    padding: 20px;
+    /* 调整内边距 */
     border-radius: 8px;
-    min-height: 100px;
-    flex-grow: 1;
+    background-color: var(--background-secondary);
+    /* 使用次要背景色 */
+    color: var(--foreground);
+    /* 确保文本颜色 */
+    /* min-height: 100px; */
+    /* 可以考虑移除固定最小高度，让内容驱动高度 */
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* 内容间距 */
 }
 
 .descriptionBox p {
     margin: 0;
+    font-size: 0.95rem;
+    /* 略微调整字体大小 */
+    line-height: 1.6;
+}
+
+.descriptionBox strong {
+    color: var(--primary-accent);
+    /* 强调文本使用主强调色 */
+    font-weight: 600;
+    /* 调整字重 */
+    margin-right: 8px;
+}
+
+/* 如果 lock-details.tsx 中的 Input 仍然应用了这个类 */
+.formInput {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: var(--foreground);
+    background-color: var(--input-background);
     font-size: 1rem;
-    color: #1e1e1e;
+}
+
+.formInput:focus {
+    border-color: var(--secondary-accent);
+    outline: none;
 }

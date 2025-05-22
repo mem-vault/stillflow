@@ -110,11 +110,11 @@ export const LockDetails = ({
     }
 
     return (
-        <Container $grow={1} $gap={2}>
+        <Container $grow={1} $gap={2} $direction="column"> {/* 主容器可以保持无边框 */}
             <SectionTitle>{title || "Lock Details"}</SectionTitle>
-            <Container $gap={2} $direction='column' $grow={1} className={styles.descriptionBox}>
+            <Container $gap={2} $direction='column' $grow={1} $bordered className={styles.descriptionBox}> {/* 应用 $bordered */}
                 {lockDetail ? (
-                    <Flex $gap="3px" $direction='column'>
+                    <Flex $gap="8px" $direction='column'> {/* 调整了间距 */}
                         <p>
                             <strong>ID:</strong>
                             <span>{shortAddress(lockDetail.id, 8, 8)}</span>
@@ -175,7 +175,6 @@ export const LockDetails = ({
                                     value={transferAddress}
                                     onChange={(e) => setTransferAddress(e.target.value)}
                                     required
-                                    className={styles.formInput}
                                 />
                             </div>
                         </Flex>

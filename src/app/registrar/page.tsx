@@ -145,7 +145,11 @@ export default function RegistrarPage() {
                 const createdRegistries: string[] = JSON.parse(localStorage.getItem(CREATED_REGISTRIES) || '[]');
                 localStorage.setItem(CREATED_REGISTRIES, JSON.stringify([...createdRegistries, createdRegistryId]));
             } else {
-                console.error("Transaction execution failed");
+                console.error("Transaction execution failed. Status:", result.effects?.status);
+                // 打印更详细的错误信息
+                if (result.effects?.status.error) {
+                    console.error("Error details:", result.effects.status.error);
+                }
             }
         } catch (error) {
             console.error("Error creating registry:", error);

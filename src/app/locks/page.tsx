@@ -69,6 +69,7 @@ export default function LocksPage() {
     }, [currentAddress, suiClient]);
 
     useEffect(() => {
+        setLoading(true);
         loadLocks();
         const interval = setInterval(loadLocks, REFRESH_RATE);
         return () => clearInterval(interval);
@@ -78,12 +79,14 @@ export default function LocksPage() {
         <main className={styles.main}>
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <Title $bordered>My Locks</Title>
+                    <Title>My Locks</Title>
                 </div>
-                <Flex $gap={2} $direction='row'>
-                    <Container $maxWidth='230px' style={{ width: '230px', height: '500px', overflowY: 'auto' }}>
-                        {locks.length > 0 ? (
-                            <Flex $gap={2} $direction='column'>
+                <Flex $gap={2} $direction='row' style={{ width: '100%' }}>
+                    <Container $bordered style={{ flex: '0 0 250px', maxHeight: '500px', overflowY: 'auto' }}>
+                        {loading ? (
+                            <p className={styles.loadingText}>Loading...</p>
+                        ) : locks.length > 0 ? (
+                            <Flex $gap="0.5rem" $direction='column'>
                                 {locks.map(lock => {
                                     return (
                                         <LockItem key={lock.id} onClick={() => setSelectedLock(lock)}>
@@ -94,10 +97,12 @@ export default function LocksPage() {
                                 })}
                             </Flex>
                         ) : (
-                            <Title>{loading ? "Loading..." : "No locks found"}</Title>
+                            <p className={styles.noLocksText}>No locks found</p>
                         )}
                     </Container>
-                    <LockDetails lockDetail={selectedLock} />
+                    <div style={{ flex: '1 1 auto', minWidth: 0 }}>
+                        <LockDetails lockDetail={selectedLock} />
+                    </div>
                 </Flex>
             </div>
         </main>

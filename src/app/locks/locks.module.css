@@ -2,34 +2,101 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     padding: 2rem;
-    background-color: #ffffff;
+    min-height: 100vh;
+    background-color: var(--background);
+    color: var(--foreground);
 }
 
 .container {
-    border: 2px solid #1e1e1e;
-    padding: 20px;
-    border-radius: 10px;
     width: 100%;
-    max-width: 900px;
-    box-sizing: border-box;
+    max-width: 1100px;
+    /* 您可以根据需要调整最大宽度 */
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    /* 使用强调色作为边框 */
+    border-radius: 8px;
+    /* 轻微圆角 */
+    background-color: var(--background-secondary);
+    /* 使用次级背景色以增加层次感 */
     display: flex;
     flex-direction: column;
+    gap: 1.5rem;
+    /* 头部和内容之间的间距 */
 }
 
 .header {
     display: flex;
     align-items: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid #1e1e1e;
+    /* Title 组件自带 margin-bottom，将在此边框上方创建空间 */
+    /* padding-bottom: 1rem; */
+    /* 如果需要额外空间，可以取消注释 */
+    border-bottom: 1px solid var(--border-color);
+    /* 标题下方的线条 */
 }
 
-.descriptionBox {
-    border: 2px solid #1e1e1e;
-    padding: 15px;
+.loadingText,
+.noLocksText {
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 1.1rem;
+    color: var(--secondary-accent);
+    /* 为状态消息使用强调色 */
+    width: 100%;
+}
+
+/* 
+  确保 src/styled.ts 中的 Title, Flex, Container, LockItem 等组件
+  使用 src/app/globals.css 中定义的 CSS 变量。
+  例如，LockItem 基于 Button 组件，其边框和文本颜色应已使用变量：
+  - border: 1px solid var(--button-border); (应为 var(--primary-accent))
+  - color: var(--button-text); (应为 var(--primary-accent))
+  - background-color: transparent;
+  - hover background: var(--button-hover-bg); (应为 var(--primary-accent) 的 RGBA 版本)
+  全局滚动条样式 (::-webkit-scrollbar) 也应在 globals.css 中定义并与主题匹配。
+*/
+
+/* 为 logo 添加基础样式 */
+.logo {
+    max-width: 150px;
+    /* 您可以根据需要调整 logo 的最大宽度 */
+    height: auto;
+    margin-bottom: 30px;
+    /* 增加 logo下方的间距 */
+}
+
+.mainText {
+    /* 可选：微妙的光晕效果 */
+}
+
+.launchButton {
+    border: 1px solid var(--button-primary-bg);
+    /* 使用主按钮背景色作为边框色，或设为 transparent */
     border-radius: 8px;
-    min-height: 100px;
-    flex-grow: 1;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    color: var(--button-primary-text);
+    /* 使用主按钮文字颜色 */
+    background-color: var(--button-primary-bg);
+    /* 使用主按钮背景色 */
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    font-family: var(--font-geist-sans, Arial, Helvetica, sans-serif);
+    font-weight: 500;
+}
+
+.launchButton:hover {
+    background-color: var(--button-primary-hover-bg);
+    /* 主按钮悬停背景色 */
+    border-color: var(--button-primary-hover-bg);
+    /* 边框颜色与悬停背景色一致 */
+    color: var(--button-primary-text);
+    /* 确保悬停时文字颜色依然清晰 */
+}
+
+@media (prefers-color-scheme: dark) {
+    .logo {
+        /* 此处保留暗色模式下的 filter: invert() 样式 */
+        filter: invert();
+    }
 }

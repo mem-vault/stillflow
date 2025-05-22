@@ -4,18 +4,23 @@
     align-items: center;
     justify-content: flex-start;
     padding: 2rem;
-    background-color: #ffffff;
+    background-color: var(--background);
+    color: var(--foreground);
+    min-height: 100vh;
+    width: 100%;
 }
 
 .container {
-    border: 2px solid #1e1e1e;
-    padding: 20px;
-    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+    border-radius: 8px;
     width: 100%;
     max-width: 900px;
+    /* 或根据您的偏好调整 */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    background-color: var(--background-secondary);
 }
 
 .header {
@@ -23,57 +28,67 @@
     align-items: center;
     margin-bottom: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 2px solid #1e1e1e;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .icon {
-    border: 2px solid #1e1e1e;
-    padding: 5px 10px;
-    margin-right: 15px;
-    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    border-radius: 4px;
     font-size: 0.9rem;
     min-width: 60px;
-    /* Ensure icon area has some width */
     text-align: center;
+    color: var(--primary-accent);
+    background-color: transparent;
 }
 
 .title {
-    font-size: 1.25rem;
-    color: #1e1e1e;
-    border: 2px solid #1e1e1e;
-    padding: 5px 15px;
-    border-radius: 5px;
+    font-size: 1.75rem;
+    /* 保持与 registrar 页面标题大小一致 */
+    color: var(--primary-accent);
+    margin: 0;
+    /* 移除默认的 h1 margin */
 }
 
 .content {
     display: flex;
-    gap: 20px;
+    gap: 1.5rem;
+    /* 调整间距 */
     flex-grow: 1;
-    /* Allow content to fill space */
+    width: 100%;
 }
 
 .locksSection {
-    border: 2px solid #1e1e1e;
-    padding: 15px;
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
     border-radius: 8px;
     flex: 1;
     display: flex;
     flex-direction: column;
+    background-color: var(--background);
+    /* 与 container 背景区分 */
 }
 
 .detailsSection {
-    border: 2px solid #1e1e1e;
-    padding: 15px;
+    /* 假设 LockDetails 组件的根元素会使用这个类，或者这个类用于包裹 LockDetails */
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
     border-radius: 8px;
     flex: 2;
     display: flex;
     flex-direction: column;
+    background-color: var(--background);
+    /* 与 container 背景区分 */
 }
 
 .sectionTitle {
-    font-size: 1.1rem;
-    color: #1e1e1e;
+    font-size: 1.25rem;
+    /* 调整大小 */
+    color: var(--primary-accent);
     margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .actionButtons {
@@ -83,14 +98,20 @@
 }
 
 .button {
-    font-size: 1rem;
-    color: #1e1e1e;
+    font-size: 0.95rem;
+    color: var(--button-text);
     background-color: transparent;
-    border: 2px solid #1e1e1e;
+    border: 1px solid var(--button-border);
     padding: 8px 15px;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
     text-align: center;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.button:hover {
+    background-color: var(--button-hover-bg);
+    border-color: var(--secondary-accent);
 }
 
 .lockList {
@@ -98,77 +119,128 @@
     flex-direction: column;
     gap: 10px;
     margin-bottom: 1rem;
+    flex-grow: 1;
+    /* 允许列表填充可用空间 */
 }
 
 .lockItem {
-    border: 2px solid #1e1e1e;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
+    border: 1px solid var(--border-color);
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-align: left;
+    /* 文本左对齐 */
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    /* 堆叠子元素 */
+    gap: 0.25rem;
+    /* 子元素间的小间距 */
+    background-color: var(--background-secondary);
+    color: var(--foreground);
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.lockItem:hover {
+    border-color: var(--secondary-accent);
+    background-color: rgba(39, 221, 251, 0.05);
+    /* 使用 globals.css 中定义的悬停背景的更微妙版本 */
+}
+
+.selectedLock {
+    border-color: var(--secondary-accent);
+    background-color: rgba(41, 224, 244, 0.1);
+    /* 使用 secondary-accent 的微妙背景 */
+    box-shadow: 0 0 5px rgba(41, 224, 244, 0.3);
+    /* 可选：轻微光晕 */
+}
+
+.lockItem span {
+    font-size: 0.9rem;
 }
 
 .descriptionBox {
-    border: 2px solid #1e1e1e;
-    padding: 15px;
+    /* 如果此样式仍在此文件中使用 */
+    border: 1px solid var(--border-color);
+    padding: 1rem;
     border-radius: 8px;
-    min-height: 100px;
+    background-color: var(--background-secondary);
+    color: var(--foreground);
     margin-bottom: 1rem;
-    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .descriptionBox p {
     margin: 0;
-    font-size: 1rem;
-    color: #1e1e1e;
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
 
 .financialActions {
+    /* 如果此样式仍在此文件中使用 */
     display: flex;
     justify-content: space-between;
     gap: 10px;
     margin-top: auto;
+    /* 推到底部 */
 }
 
 .transferButton,
+/* 如果此样式仍在此文件中使用 */
 .withdrawButton {
+    /* 如果此样式仍在此文件中使用 */
     flex-grow: 1;
+    /* 继承 .button 样式或单独设置 */
 }
 
 .backLinkContainer {
     margin-top: 2rem;
     display: flex;
     gap: 10px;
+    align-items: center;
+    /* 使按钮和链接垂直对齐 */
 }
 
 .backLink {
-    font-size: 1rem;
-    color: #1e1e1e;
+    font-size: 0.95rem;
+    color: var(--primary-accent);
     text-decoration: none;
     padding: 8px 15px;
-    border: 2px solid #1e1e1e;
-    border-radius: 5px;
+    border: 1px solid var(--button-border);
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .backLink:hover {
-    background-color: #f0f0f0;
+    background-color: var(--button-hover-bg);
+    border-color: var(--secondary-accent);
+    text-decoration: none;
+    /* 移除默认的下划线，因为我们有边框和背景反馈 */
 }
 
 .noLocksText {
     text-align: center;
-    color: #666;
+    color: var(--secondary-accent);
+    /* 使用强调色 */
     margin-top: 20px;
+    font-size: 1rem;
+    flex-grow: 1;
+    /* 使其在 flex 容器中居中 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+/* Modal Styles */
 .modalOverlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 9, 24, 0.85);
+    /* 与 registrar.module.css 一致 */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -176,33 +248,37 @@
 }
 
 .modalContent {
-    background-color: #fff;
-    padding: 20px;
+    background-color: var(--background-secondary);
+    padding: 1.5rem 2rem;
+    /* 调整内边距 */
     border-radius: 8px;
-    border: 2px solid #1e1e1e;
+    border: 1px solid var(--border-color);
     width: 90%;
-    max-width: 450px;
-    /* 稍微调大一点以容纳表单 */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    /* 与 registrar.module.css 一致 */
+    box-shadow: 0 5px 20px rgba(39, 221, 251, 0.15);
+    /* 与 registrar.module.css 一致 */
+    color: var(--foreground);
 }
 
 .modalContent h2 {
     margin-top: 0;
     margin-bottom: 1.5rem;
-    /* 增加标题和表单的间距 */
-    color: #1e1e1e;
+    color: var(--primary-accent);
     text-align: center;
+    font-size: 1.5rem;
 }
 
 .formGroup {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .formGroup label {
     display: block;
-    margin-bottom: 0.5rem;
-    color: #1e1e1e;
-    font-weight: bold;
+    margin-bottom: 0.6rem;
+    color: var(--foreground);
+    font-weight: 500;
+    font-size: 0.9rem;
 }
 
 .formInput,
@@ -210,58 +286,67 @@
 .formGroup select,
 .formGroup input[type="number"],
 .formGroup input[type="date"] {
+    /* 确保所有表单元素样式一致 */
     width: 100%;
-    padding: 10px;
-    /* 增加内边距 */
-    border: 1px solid #ccc;
+    padding: 10px 12px;
+    border: 1px solid var(--input-border);
     border-radius: 4px;
     box-sizing: border-box;
-    color: #1e1e1e;
-    background-color: #fff;
+    color: var(--foreground);
+    background-color: var(--input-background);
     font-size: 1rem;
-    /* 确保字体大小一致 */
+    transition: border-color 0.2s;
+}
+
+.formInput:focus,
+.formGroup select:focus,
+.formGroup input[type="number"]:focus,
+.formGroup input[type="date"]:focus {
+    border-color: var(--secondary-accent);
+    outline: none;
 }
 
 .modalActions {
     display: flex;
     justify-content: flex-end;
-    /* 或者 space-between 如果按钮较多 */
-    gap: 10px;
-    margin-top: 1.5rem;
+    gap: 15px;
+    margin-top: 2rem;
 }
 
 .modalButton {
     padding: 10px 20px;
-    /* 增加按钮大小 */
-    border-radius: 5px;
+    border-radius: 4px;
+    /* 统一圆角 */
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    /* 加粗按钮文字 */
-    color: #1e1e1e;
-    background-color: transparent;
-    border: 2px solid #1e1e1e;
-    transition: background-color 0.2s, color 0.2s;
-    /* 添加过渡效果 */
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .modalButton[type="submit"] {
-    background-color: #1e1e1e;
-    /* 主操作按钮样式 */
-    color: #fff;
+    color: var(--button-primary-text);
+    background-color: var(--button-primary-bg);
+    border: 1px solid var(--button-primary-bg);
 }
 
 .modalButton[type="submit"]:hover {
-    background-color: #333;
-    /* 主操作按钮悬停样式 */
-    border-color: #333;
+    background-color: var(--button-primary-hover-bg);
+    border-color: var(--button-primary-hover-bg);
+}
+
+.modalButton[type="button"] {
+    color: var(--button-text);
+    background-color: transparent;
+    border: 1px solid var(--button-border);
 }
 
 .modalButton[type="button"]:hover {
-    background-color: #f0f0f0;
-    /* 次要操作按钮悬停样式 */
+    background-color: var(--button-hover-bg);
+    border-color: var(--secondary-accent);
+    /* 悬停时也改变边框颜色以提供反馈 */
 }
 
-.copyable {
+/* .copyable 类已在 globals.css 中定义，此处无需重复或可移除 */
+/* .copyable {
     cursor: pointer;
-}
+} */
