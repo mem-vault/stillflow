@@ -16,7 +16,7 @@ export default function HomePage() {
           priority // 如果是 LCP 元素，可以添加 priority 属性
         />
         <p className={styles.mainText}>
-          Stillflow is a protocol that truly implements public ledgers
+          Trustless Sui Vaults to Buy and Hold with Confidence and Compliance. Not FOMO
         </p>
         <Link href="/registrar" passHref>
           <button className={styles.launchButton}>
